@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Email Dashboard</h1>
+
+        {% if current_user.is_authenticated %}
+            <p>Welcome back, {{ current_user.username }}!</p>
+            <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+
+            <!-- Dashboard Table for Tracking Email Status -->
+            <table class="email-status-table">
+                <thead>
+                    <tr>
+                        <th>Company Name</th>
+                        <th>Email Address</th>
+                        <th>Email Status</th>
+                        <th>Delivery Status</th>
+                        <th>Opened</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for email in email_statuses %}
+                        <tr>
+                            <td>{{ email.company_name }}</td>
+                            <td>{{ email.email_address }}</td>
+                            <td>{{ email.status }}</td>
+                            <td>{{ email.delivery_status }}</td>
+                            <td>{% if email.opened == 1 %}Yes{% else %}No{% endif %}</td>
+                            <td>{{ email.local_timestamp }}</td>
+
+
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        {% else %}
+            <p>Please <a href="{{ url_for('login') }}">login</a> to view your email dashboard.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

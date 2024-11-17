@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Sender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Email Sender</h1>
+
+        {% if current_user.is_authenticated %}
+            <p>Welcome, {{ current_user.username }}!</p>
+            <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+            <br>
+
+            <!-- Links to the Dashboard -->
+            <a href="{{ url_for('dashboard') }}" target="_blank" class="btn">View Dashboard</a>
+            <br>
+
+            <!-- Email Sending Form for Authenticated Users -->
+            <form action="{{ url_for('send_emails') }}" method="POST" enctype="multipart/form-data">
+
+                <!-- CSV File Upload Section -->
+                <section class="upload-section">
+                    <h2>Upload CSV File</h2>
+                    <label for="csvFile">Upload CSV:</label>
+                    <input type="file" name="csvFile" id="csvFile" required>
+                </section>
+
+                <!-- Email Template Section with Customizable Prompt -->
+                <section class="email-template-section">
+                    <h2>Compose Email</h2>
+                    <label for="emailBody">Enter your high-level prompt:</label>
+                    <textarea id="emailBody" name="emailBody" placeholder="e.g. Write a professional email apologizing for the late delivery of the {Product}" required rows="2" cols="6"></textarea>
+                    <br>
+                    <p>Once you submit the form, your high-level prompt will be used to generate the subject and email content for each recipient using the data from the CSV file.</p>
+                </section>
+
+                <!-- Scheduling Options -->
+                <section class="scheduling-section">
+                    <h2>Schedule Options</h2>
+                    <label for="scheduleOption">Select when to send the emails:</label>
+                    <select name="scheduleOption" id="scheduleOption">
+                        <option value="now">Send Now</option>
+                        <option value="specific_time">Send at Specific Time</option>
+                        <option value="batch">Batch Send</option>
+                    </select>
+
+                    <!-- Specific Time Input (hidden by default) -->
+                    <div id="specificTimeContainer" style="display:none;">
+                        <label for="specificTime">Send at (YYYY-MM-DD HH:MM:SS):</label>
+                        <input type="text" id="specificTime" name="specificTime" placeholder="2024-11-20 15:30:00">
+                    </div>
+
+                    <!-- Batch Interval Input (hidden by default) -->
+                    <div id="batchIntervalContainer" style="display:none;">
+                        <label for="batchInterval">Batch Interval (minutes):</label>
+                        <input type="number" id="batchInterval" name="batchInterval" min="1" value="60">
+                    </div>
+                </section>
+
+                <!-- Throttling Options -->
+                <section class="throttling-section">
+                    <h2>Throttling Options</h2>
+                    <label for="emailsPerMinute">Emails per Minute:</label>
+                    <input type="number" id="emailsPerMinute" name="emailsPerMinute" min="1" value="10">
+                    <p>Specify the maximum number of emails to be sent per minute to avoid exceeding provider limits.</p>
+                </section>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn">Send Emails</button>
+            </form>
+
+        {% else %}
+            <!-- Prompt to login or register if user is not authenticated -->
+            <p>Please <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('register') }}">register</a> to send emails.</p>
+        {% endif %}
+    </div>
+
+    <!-- JavaScript to dynamically display scheduling fields -->
+    <script>
+        document.getElementById('scheduleOption').addEventListener('change', function() {
+            const specificTimeContainer = document.getElementById('specificTimeContainer');
+            const batchIntervalContainer = document.getElementById('batchIntervalContainer');
+
+            // Show or hide specific time and batch interval fields based on selected schedule option
+            if (this.value === 'specific_time') {
+                specificTimeContainer.style.display = 'block';
+                batchIntervalContainer.style.display = 'none';
+            } else if (this.value === 'batch') {
+                specificTimeContainer.style.display = 'none';
+                batchIntervalContainer.style.display = 'block';
+            } else {
+                specificTimeContainer.style.display = 'none';
+                batchIntervalContainer.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

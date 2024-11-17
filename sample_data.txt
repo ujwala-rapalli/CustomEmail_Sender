@@ -1,0 +1,6 @@
+Contact_Name	Company_Name	Location	Email_Address	Products
+Rapalli Ujwala,Alpha Investments,New York, USA,rapalliujwala2@gmail.com,Automated Stock Trading
+Rapalli Prajwala,Beta Traders Ltd.,London, UK,rapalliprajwala@gmail.com,AI-Driven Trade AnalysisGamma johnny,Holdings,Sydney, 22211a6697@bvrit.ac.in,Market Monitoring
+Pannala Sunayana,Delta Capital Partners,Toronto,22211a6681@bvrit.ac.in,Profit Optimization Strategies
+Daisy,Epsilon Wealth Advisors,Dubai, UAE,22211a6688@bvrit.ac.in,AI-Powered Trading Signals
+
