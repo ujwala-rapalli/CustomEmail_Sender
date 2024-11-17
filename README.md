@@ -130,7 +130,7 @@ project-root/
 ---
 
 ## Demo Video
-[Insert Link to Video Here (Optional)]
+[https://youtu.be/lvNjxjH5XCk]
 
 ---
 
