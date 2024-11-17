@@ -1,9 +1,3 @@
-# CustomEmail_Sender
-A web application that sends the custom emails with a simple prompt and track emails and monitor delivery status
-Here’s a comprehensive README for your project, tailored to meet your internship evaluation criteria:
-
----
-
 # Custom Email-Sending Application with Dashboard
 
 ## Overview
