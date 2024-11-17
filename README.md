@@ -134,9 +134,5 @@ project-root/
 
 ---
 
-## License
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-
----
 
 Feel free to reach out for any questions or clarifications regarding the project.
