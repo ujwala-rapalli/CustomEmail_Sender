@@ -35,8 +35,9 @@ This project is a **custom email-sending application** designed to streamline pe
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
+  git clone https://github.com/ujwala-rapalli/CustomEmail_Sender.git
+  cd CustomEmail_Sender
+
    ```
 
 2. Set up a virtual environment:
